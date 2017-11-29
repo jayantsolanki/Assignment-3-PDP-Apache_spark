@@ -1,3 +1,11 @@
+/*
+* Took references from:
+*	1 - https://www.linkedin.com/pulse/connected-component-using-map-reduce-apache-spark-shirish-kumar
+*	2 - http://mmds-data.org/presentations/2014/vassilvitskii_mmds14.pdf
+*
+*
+*
+*/
 // import org.apache.spark.graphx.GraphLoader
 import org.apache.spark.SparkContext
 import org.apache.spark.SparkConf
@@ -7,7 +15,7 @@ import org.apache.spark.rdd.RDD
 import org.apache.spark.storage.StorageLevel
 
 object A2 {
-	 def main(args: Array[String]) {
+	def main(args: Array[String]) {
 		val conf = new SparkConf().setAppName("Connected Components using Graphx")
 		val sc = new SparkContext(conf)
 		if (args.length != 2) {//arguments needed
@@ -16,60 +24,48 @@ object A2 {
 		}
 		val input = args(0)
 		val output = args(1)
-		val graph = sc.textFile(input)//reading the graph
+		val graph = sc.textFile(input)//reading the graph from the input.txt
 		// val verticesRDD = graph.map(line=>{
 		// 	val vertices = line.split(" ")
 		// 	(vertices(0), vertices(1))
 		// })
 		val verticesRDD = graph.map(line=>{
 			val vertices = line.split(" ")
-			(vertices(0).toLong, vertices(1).toLong)
+			(vertices(0).toLong, vertices(1).toLong)//converting to Long format, assuming the nodes will be in integers format
 		})
 		val disp = verticesRDD.map(x => {
 			x._1 + " " + x._2
-		})//original graph
-		// val largeStar = verticesRDD.map(ver => {
-		// 	(ver._1,ver._2)
+		})//original graph in formatted way
+		val (outputGraph, count) = converge(verticesRDD, 0)
+		// val (nodePairsLargeStar, _) = largeSStar(verticesRDD)
+		// val (nodePairsSmallStar, _) = smallSStar(nodePairsLargeStar)
+		// val (nodePairsLargeStar1, _) = largeSStar(nodePairsSmallStar)
+		// val (nodePairsSmallStar1, _) = smallSStar(nodePairsLargeStar1)
+		// val (nodePairsLargeStar2, _) = largeSStar(nodePairsSmallStar1)
+		// val (nodePairsSmallStar2, _) = smallSStar(nodePairsLargeStar2)
+		// val (nodePairsLargeStar3, _) = largeSStar(nodePairsSmallStar2)
+		// val (nodePairsSmallStar3, _) = smallSStar(nodePairsLargeStar3)
 
-		// })
-		//////////////////large star/////////////////
-		//Map
-		val expandVer = verticesRDD.flatMap(vertices => {//emitting the (u,v) and (v,u)//immutable
-			if (vertices._1 == vertices._2)//prevent vertex pointing to itself emitted twice
-				Seq((vertices._1.toLong, vertices._1.toLong))//converting vertices tuple back to list, multiple inputs
-			else
-				Seq((vertices._1.toLong, vertices._2.toLong), (vertices._2.toLong, vertices._1.toLong))
-		})
-		// val expandVer = verticesRDD.flatMap(vertices => {//emitting the (u,v) and (v,u)//immutable
-		// 	if (vertices._1 == vertices._2)//prevent vertex pointing to itself emitted twice
-		// 		Seq((vertices._1, vertices._1))//converting vertices tuple back to list, multiple inputs
-		// 	else
-		// 		Seq((vertices._1, vertices._2), (vertices._2, vertices._1))
-		// })
-		//reduce
-		// val localAdd = (s: HashSet[Long], v: Long) => s += v
-		// val partitionAdd = (s1: HashSet[Long], s2: HashSet[Long]) => s1 ++= s2
-		// val allNeighbors = expandVer.aggregateByKey(HashSet.empty[Long]/*, rangePartitioner*/)(localAdd, partitionAdd)
-		// val allNeighbors = expandVer.reduceByKey((a,b) => {
-		// 	a
-		// })
-		val (nodePairsLargeStar, _) = largeSStar(verticesRDD)
-		val (nodePairsSmallStar, _) = smallSStar(nodePairsLargeStar)
-		val (nodePairsLargeStar1, _) = largeSStar(nodePairsSmallStar)
-		val (nodePairsSmallStar1, _) = smallSStar(nodePairsLargeStar1)
-		val (nodePairsLargeStar2, _) = largeSStar(nodePairsSmallStar1)
-		val (nodePairsSmallStar2, _) = smallSStar(nodePairsLargeStar2)
-		val (nodePairsLargeStar3, _) = largeSStar(nodePairsSmallStar2)
-		val (nodePairsSmallStar3, _) = smallSStar(nodePairsLargeStar3)
-
-		println(verticesRDD.collect().mkString("\n")+"\n\n\n"+nodePairsSmallStar3.distinct.collect().mkString("\n"))
-		// println(allNeighbors.collect().mkString("\n"))
+		println("\nOriginal Graph ---\n"+verticesRDD.collect().mkString("\n")+"\n\nConnected Compnoents---\n"+outputGraph.distinct.collect().mkString("\n \nCount is "+count+"\n"))
 	}
-	def argMin(nodes: List[Long]): Long = {
+	def converge(graph: RDD[(Long, Long)], iterationCount: Int): (RDD[(Long, Long)], Int) = {
+
+		if(iterationCount == 5)
+			(graph, iterationCount)
+		else{
+			val newCount = iterationCount+1
+			val (nodePairsLargeStar, _) = largeSStar(graph)
+			val (nodePairsSmallStar, _) = smallSStar(nodePairsLargeStar)
+			converge(nodePairsSmallStar, newCount)
+
+		}
+
+	}
+	private def argMin(nodes: List[Long]): Long = {
 		nodes.min(Ordering.by((node: Long) => node))
 	}
 
-	private def smallSStar(graph: RDD[(Long, Long)]): (RDD[(Long, Long)], Int) = {
+	def smallSStar(graph: RDD[(Long, Long)]): (RDD[(Long, Long)], Int) = {
 	/////////////////////---------First Step: Map----------//////////////////////////
 		val emit = graph.map(x => {
 			// val (self, neighbor) = (x._1, x._2)
@@ -111,7 +107,7 @@ object A2 {
 		//////////////////////--------end of Second step-------//////////////////////////
 	}
 
-	private def largeSStar(graph: RDD[(Long, Long)]): (RDD[(Long, Long)], Int) = {
+	def largeSStar(graph: RDD[(Long, Long)]): (RDD[(Long, Long)], Int) = {
 		/////////////////////---------First Step: Map----------//////////////////////////
 		val emit = graph.flatMap(vertices => {//emitting the (u,v) and (v,u)//immutable
 			if (vertices._1 == vertices._2)//prevent vertex pointing to itself emitted twice

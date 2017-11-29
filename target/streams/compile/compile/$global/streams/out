@@ -1,19 +1,4 @@
-[0m[[0m[31merror[0m] [0m[0m/home/jayant/Assignment-3/A2.scala:58:29: currLargeStarConnectivityChangeCount is already defined as value currLargeStarConnectivityChangeCount[0m
-[0m[[0m[31merror[0m] [0m[0m		val (nodePairsLargeStar1, currLargeStarConnectivityChangeCount) = largeSStar(nodePairsSmallStar)[0m
-[0m[[0m[31merror[0m] [0m[0m		                          ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/jayant/Assignment-3/A2.scala:59:29: currSmallStarConnectivityChangeCount is already defined as value currSmallStarConnectivityChangeCount[0m
-[0m[[0m[31merror[0m] [0m[0m		val (nodePairsSmallStar1, currSmallStarConnectivityChangeCount) = smallSStar(nodePairsLargeStar1)[0m
-[0m[[0m[31merror[0m] [0m[0m		                          ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/jayant/Assignment-3/A2.scala:60:29: currLargeStarConnectivityChangeCount is already defined as value currLargeStarConnectivityChangeCount[0m
-[0m[[0m[31merror[0m] [0m[0m		val (nodePairsLargeStar2, currLargeStarConnectivityChangeCount) = largeSStar(nodePairsSmallStar1)[0m
-[0m[[0m[31merror[0m] [0m[0m		                          ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/jayant/Assignment-3/A2.scala:61:29: currSmallStarConnectivityChangeCount is already defined as value currSmallStarConnectivityChangeCount[0m
-[0m[[0m[31merror[0m] [0m[0m		val (nodePairsSmallStar2, currSmallStarConnectivityChangeCount) = smallSStar(nodePairsLargeStar2)[0m
-[0m[[0m[31merror[0m] [0m[0m		                          ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/jayant/Assignment-3/A2.scala:62:29: currLargeStarConnectivityChangeCount is already defined as value currLargeStarConnectivityChangeCount[0m
-[0m[[0m[31merror[0m] [0m[0m		val (nodePairsLargeStar3, currLargeStarConnectivityChangeCount) = largeSStar(nodePairsSmallStar2)[0m
-[0m[[0m[31merror[0m] [0m[0m		                          ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/jayant/Assignment-3/A2.scala:63:29: currSmallStarConnectivityChangeCount is already defined as value currSmallStarConnectivityChangeCount[0m
-[0m[[0m[31merror[0m] [0m[0m		val (nodePairsSmallStar3, currSmallStarConnectivityChangeCount) = smallSStar(nodePairsLargeStar3)[0m
-[0m[[0m[31merror[0m] [0m[0m		                          ^[0m
-[0m[[0m[31merror[0m] [0m[0m6 errors found[0m
+[0m[[0m[31merror[0m] [0m[0m/home/jayant/Assignment-3/A2.scala:49:117: value distinct is not a member of (org.apache.spark.rdd.RDD[(Long, Long)], Int)[0m
+[0m[[0m[31merror[0m] [0m[0m		println("\nOriginal Graph ---\n"+verticesRDD.collect().mkString("\n")+"\n\nConnected Compnoents---\n"+outputGraph.distinct.collect().mkString("\n"))[0m
+[0m[[0m[31merror[0m] [0m[0m		                                                                                                                  ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
