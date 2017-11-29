@@ -1,0 +1,10 @@
+[0m[[0m[31merror[0m] [0m[0m/home/jayant/Assignment-3/A2.scala:33:34: value tolist is not a member of (String, String)[0m
+[0m[[0m[31merror[0m] [0m[0m				((vertices._1, vertices._1)).tolist[0m
+[0m[[0m[31merror[0m] [0m[0m				                             ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/jayant/Assignment-3/A2.scala:35:62: value tolist is not a member of ((String, String), (String, String))[0m
+[0m[[0m[31merror[0m] [0m[0m				((vertices._1, vertices._2), (vertices._2, vertices._1)).tolist[0m
+[0m[[0m[31merror[0m] [0m[0m				                                                         ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/jayant/Assignment-3/A2.scala:40:31: value mkString is not a member of Array[Nothing][0m
+[0m[[0m[31merror[0m] [0m[0m		println(expandVer.collect().mkString("\n"))[0m
+[0m[[0m[31merror[0m] [0m[0m		                            ^[0m
+[0m[[0m[31merror[0m] [0m[0mthree errors found[0m
