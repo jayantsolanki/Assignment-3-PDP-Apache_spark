@@ -1,4 +1,11 @@
-[0m[[0m[31merror[0m] [0m[0m/home/jayant/Assignment-3/A2.scala:49:117: value distinct is not a member of (org.apache.spark.rdd.RDD[(Long, Long)], Int)[0m
-[0m[[0m[31merror[0m] [0m[0m		println("\nOriginal Graph ---\n"+verticesRDD.collect().mkString("\n")+"\n\nConnected Compnoents---\n"+outputGraph.distinct.collect().mkString("\n"))[0m
-[0m[[0m[31merror[0m] [0m[0m		                                                                                                                  ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[31merror[0m] [0m[0m/home/jayant/Assignment-3/A2.scala:40:7: constructor cannot be instantiated to expected type;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : (T1, T2)[0m
+[0m[[0m[31merror[0m] [0m[0m required: (org.apache.spark.rdd.RDD[(Long, Long)], Long, Long)[0m
+[0m[[0m[31merror[0m] [0m[0m		val (outputGraph, count) = converge(verticesRDD, 0, MaxIterations)[0m
+[0m[[0m[31merror[0m] [0m[0m		    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/jayant/Assignment-3/A2.scala:52:4: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : (org.apache.spark.rdd.RDD[(Long, Long)], Long)[0m
+[0m[[0m[31merror[0m] [0m[0m required: (org.apache.spark.rdd.RDD[(Long, Long)], Long, Long)[0m
+[0m[[0m[31merror[0m] [0m[0m			(graph, iterationCount)[0m
+[0m[[0m[31merror[0m] [0m[0m			^[0m
+[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m

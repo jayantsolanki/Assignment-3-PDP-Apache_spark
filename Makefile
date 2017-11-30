@@ -14,7 +14,7 @@ demo:
 	#################This is for scala##############
 	$(CXX) $(CXXFLAGS) --class "A2" --master local[4] target/scala-2.11/a2_2.11-1.0.jar $(input) $(output)
 	#################Scala ends here##############
-clean:
+clean:#use this for deleting the output folder
 	rm -r output
 clean-all:
 	rm -r output
