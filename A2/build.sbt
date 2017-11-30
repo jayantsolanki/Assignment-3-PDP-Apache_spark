@@ -1,4 +1,4 @@
-name := "A2"
+name := "a2"
 
 version := "1.0"
 

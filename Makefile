@@ -7,12 +7,12 @@ all:
 	#$(CXX) $(CXXFLAGS) ex05.py $(input) $(output)
 	#################This is for scala##############
 	sbt package
-	$(CXX) $(CXXFLAGS) --class "A2" --master local[4] target/scala-2.11/a2_2.11-1.0.jar $(input) $(output)
+	$(CXX) $(CXXFLAGS) --class "a2" --master local[4] target/scala-2.11/a2_2.11-1.0.jar $(input) $(output)
 	#################Scala ends here##############
 demo:
 	# $(CXX) $(CXXFLAGS) ex05.py $(input) $(output)
 	#################This is for scala##############
-	$(CXX) $(CXXFLAGS) --class "A2" --master local[4] target/scala-2.11/a2_2.11-1.0.jar $(input) $(output)
+	$(CXX) $(CXXFLAGS) --class "a2" --master local[4] target/scala-2.11/a2_2.11-1.0.jar $(input) $(output)
 	#################Scala ends here##############
 clean:#use this for deleting the output folder
 	rm -r output

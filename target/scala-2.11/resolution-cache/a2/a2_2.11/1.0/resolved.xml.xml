@@ -4,10 +4,10 @@
 		module="a2_2.11"
 		revision="1.0"
 		status="integration"
-		publication="20171129202517"
+		publication="20171129215717"
 	>
 		<description>
-		A2
+		a2
 		</description>
 	</info>
 	<configurations>
