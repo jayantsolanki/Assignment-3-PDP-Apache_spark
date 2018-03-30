@@ -1,3 +1,7 @@
+/*  YOUR_FIRST_NAME: Jayant
+ *  YOUR_LAST_NAME:	Solanki
+ *  YOUR_UBIT_NAME: jayantso
+ */
 import org.apache.spark.graphx.GraphLoader
 import org.apache.spark.SparkContext
 import org.apache.spark.SparkConf
