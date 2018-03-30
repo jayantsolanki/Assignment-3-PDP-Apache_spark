@@ -8,7 +8,7 @@
 * Algorithm is based upon the Paper published by R. Kiveris, S. Lattanzi, V. Mirrokni, V. Rastogi, S. Vassilvitskii which used Large Star and Small Star to implement pointer jumping. Convergence is achieved in root of logn.  
 ## Coding
 ***
-Code and output is under A2 folder [A2](https://github.com/jayantsolanki/Connected-Components-Apache_spark/tree/master/A2) link
+Code and output are under A2 folder [A2](https://github.com/jayantsolanki/Connected-Components-Apache_spark/tree/master/A2) link
 
 ## Folder Tree
 ***
